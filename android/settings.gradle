@@ -1,5 +1,5 @@
-pluginManagement {
-    repositories {
+pluginManagement { 
+         repositories {
         google {
             content {
                 includeGroupByRegex("com\\.android.*")
@@ -10,14 +10,18 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+      includeBuild("../node_modules/@react-native/gradle-plugin")
 }
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+plugins { id("com.facebook.react.settings") }
+extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
 
-rootProject.name = "rn_view"
+// dependencyResolutionManagement {
+//     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+// }
+rootProject.name = 'rn_view'
 include ':app'
+includeBuild('../node_modules/@react-native/gradle-plugin')
