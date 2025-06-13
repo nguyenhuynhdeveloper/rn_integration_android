@@ -28,6 +28,9 @@ class MainApplication : Application(), ReactApplication {
             // override fun getJSBundleFile(): String {
             //     return "assets://index.android.bundle"
             // }
+            override fun getJSBundleFile(): String {
+                return "assets://index.android.bundle"
+            }
 
             override fun getUseDeveloperSupport(): Boolean = false;
 
