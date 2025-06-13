@@ -25,11 +25,20 @@ class MainApplication : Application(), ReactApplication {
 
             override fun getJSMainModuleName(): String = "index"
 
-            override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
+            // override fun getJSBundleFile(): String {
+            //     return "assets://index.android.bundle"
+            // }
+
+            override fun getUseDeveloperSupport(): Boolean = false;
 
             override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
             override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
         }
+
+//     fun isNewArchitectureEnabled(): Boolean {
+//        return BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
+//    }
+//    override fun getReactNativeHost(): ReactNativeHost = reactNativeHost
 
     override val reactHost: ReactHost
         get() = getDefaultReactHost(applicationContext, reactNativeHost)
@@ -39,6 +48,8 @@ class MainApplication : Application(), ReactApplication {
 //       SoLoader.init(this, OpenSourceMergedSoMapping)
         SoLoader.init(this, false);
         if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+            // Bắt buộc: khởi tạo TurboModules
+//            ReactNativeFlipper.initializeFlipper(this, reactNativeHost.reactInstanceManager);
             // If you opted-in for the New Architecture, we load the native entry point for this app.
             load()
         }

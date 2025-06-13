@@ -45,7 +45,7 @@ class MyReactActivity : ReactActivity() {
      }
      // ----- end -----
 
-     // Nếu chỉ có đoạn dứới thì sẽ chạy code js thường 
+     // Nếu không có đoạn chỉ định file bundle trên chỉ có đoạn dứới thì sẽ chạy code js thường
    override fun getMainComponentName(): String = "HelloWorld"
 
    override fun createReactActivityDelegate(): ReactActivityDelegate =
