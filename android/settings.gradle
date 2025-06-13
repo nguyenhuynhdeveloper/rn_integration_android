@@ -1,5 +1,5 @@
-pluginManagement {
-    repositories {
+pluginManagement { 
+         repositories {
         google {
             content {
                 includeGroupByRegex("com\\.android.*")
@@ -10,14 +10,49 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+    // Phần thêm của React Native
+      includeBuild("../node_modules/@react-native/gradle-plugin")
 }
 
-rootProject.name = "rn_view"
+// Phần thêm của React Native
+plugins { id("com.facebook.react.settings") }
+extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }
+// -------
+
+// Phần này không cần khi đã cài đặt
+// Kể từ Gradle 7.x+ và Android Gradle Plugin (AGP) 7.x+,
+// khi bạn bật tính năng dependencyResolutionManagement trong settings.gradle,
+// thì tất cả repository nên được khai báo chỉ ở settings.gradle,
+// không còn ở build.gradle từng module như app/build.gradle.
+// Tuy nhiên, React Native tự động thêm một maven() repo trong build.gradle, điều này khiến Gradle báo lỗi "repository was added by plugin".
+
+//Cách khắc phục
+//Thay FAIL_ON_PROJECT_REPOS thành PREFER_SETTINGS để cho phép các plugin thêm repo riêng.
+
+// Ban đầu ntn
+// dependencyResolutionManagement {
+//     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//     repositories {
+//         google()
+//         mavenCentral()
+//     }
+// }
+
+// Chỉnh sửa
+//dependencyResolutionManagement {
+//    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+//    repositories {
+//        google()
+//        mavenCentral()
+////        maven { url("$rootDir/../node_modules/react-native/android") } // nếu dùng React Native
+//    }
+//}
+
+
+// Phần cả 2 cùng có
+rootProject.name = 'rn_view'
 include ':app'
+// ----
+
+// Phần thêm của React Native
+includeBuild('../node_modules/@react-native/gradle-plugin')
