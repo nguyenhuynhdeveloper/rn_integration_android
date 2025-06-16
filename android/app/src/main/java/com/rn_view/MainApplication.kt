@@ -9,7 +9,7 @@ import com.facebook.react.ReactPackage
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.load
 import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
-//import com.facebook.react.soloader.OpenSourceMergedSoMapping
+import com.facebook.react.soloader.OpenSourceMergedSoMapping  // react 19.0.0 react-native: 0.78.0 cần bắt buộc phải mở bằng soloader
 import com.facebook.soloader.SoLoader
 
 class MainApplication : Application(), ReactApplication {
@@ -29,6 +29,11 @@ class MainApplication : Application(), ReactApplication {
             //     return "assets://index.android.bundle"
             // }
 
+            // Load file bundle ở ngay Application luôn - chứ không load ở Activity
+            override fun getJSBundleFile(): String {
+                return "assets://index.android.bundle"
+            }
+
             override fun getUseDeveloperSupport(): Boolean = false;
 
             override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
@@ -45,8 +50,8 @@ class MainApplication : Application(), ReactApplication {
 
     override fun onCreate() {
         super.onCreate()
-//       SoLoader.init(this, OpenSourceMergedSoMapping)
-        SoLoader.init(this, false);
+       SoLoader.init(this, OpenSourceMergedSoMapping)
+//        SoLoader.init(this, false);
         if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
             // Bắt buộc: khởi tạo TurboModules
 //            ReactNativeFlipper.initializeFlipper(this, reactNativeHost.reactInstanceManager);

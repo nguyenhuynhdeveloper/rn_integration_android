@@ -21,8 +21,9 @@ react {
  */
 def enableProguardInReleaseBuilds = false
 
-def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
-// ---------
+// def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'  // Không có cũng vẫn chạy 
+// def jscFlavor = 'org.webkit:android-jsc:+'  // Không có cũng vẫn chạy 
+// --------------------
 
 // Phần cả 2 cùng có
 android {

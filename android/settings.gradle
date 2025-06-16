@@ -9,9 +9,12 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+    // Phần thêm của React Native - cho tại đây cũng chạy 
+    //   includeBuild("../node_modules/@react-native/gradle-plugin")
     }
-    // Phần thêm của React Native
+    // Phần thêm của React Native - cho tại đây cũng chạy 
       includeBuild("../node_modules/@react-native/gradle-plugin")
+
 }
 
 // Phần thêm của React Native
